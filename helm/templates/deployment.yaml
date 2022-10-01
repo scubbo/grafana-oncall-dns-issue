@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.nameOverride }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Values.nameOverride }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.nameOverride }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.nameOverride }}
+    spec:
+      containers:
+        - image: python:latest
+          imagePullPolicy: IfNotPresent
+          name: listener
+          ports:
+            - containerPort: 8000
+          command: [ "python", "-c" ]
+          args: [ "import http.server; s=http.server.HTTPServer((\"0.0.0.0\", 8000), http.server.BaseHTTPRequestHandler); s.serve_forever()" ]
+        - image: curlimages/curl
+          imagePullPolicy: IfNotPresent
+          name: shell
+          command: [ "/bin/sh", "-c", "--" ]
+          args: [ "while true; do sleep 30; done" ]
+      restartPolicy: Always

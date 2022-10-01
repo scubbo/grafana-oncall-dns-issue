@@ -1,0 +1,8 @@
+ingressClassName: traefik
+nameOverride: oncall-debug-webhook-receiver
+# This is appended to `nameOverride` to create the Ingress intended to be resolved to by the network-internal
+# DNS resolver. I.e. default would be `oncall-debug-webhook-receiver.my-local-domain`
+dnsLocalDomain: my-local-domain
+# This is appended to `nameOverride` to create the Ingress intended to be resolved to be a network-external
+# DNS resolve. I.e. if this were `example.org`, the ingress would listen on `oncall-debug-webhook-receiver.example.org`
+dnsPublicDomain: null
