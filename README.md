@@ -77,6 +77,8 @@ No logs are generated from the main Grafana container in either case.
 
 I did find [this reference](https://github.com/grafana/oncall/blob/dd6975858ae6e8b14c90d4ee2a9b357dcbf93bec/helm/oncall/values.yaml#L107-L110) to public nameservers in the Oncall code - but, given that that's in the context of `cert-manager` (which I have disabled (since my Oncall instance is only accessible from inside my LAN!), and which is nothing to do with webhooks), I doubt that's related.
 
+**EDIT:** I confirmed that setting `cert-manager.podDnsConfig.nameservers=[<ip_of_my_LAN_DNS server>]` did not fix the problem.
+
 ## Wireshark
 
 I'm an absolute novice with Wireshark, but I've tried to capture some dumps that might prove helpful. They're in this
