@@ -1,3 +1,7 @@
+This issue has been resolved - see [here](https://github.com/grafana/oncall/issues/594). The text below is preserved for posterity.
+
+---
+
 This repo replicates an issue I'm running into with DNS resolution from Grafana Oncall's Outgoing Webhooks.
 
 # TL;DR
